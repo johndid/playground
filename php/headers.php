@@ -44,7 +44,7 @@ $index=0;
 foreach($ports as $p ) {
     $banner=0;
     exec("echo ' ' | /usr/bin/nc -v -n -w1 $client $p",$banner,$ret);
-    $x = explode(' ', $services[$index]);
+    $x = explode(' ', $service[$index]);
     echo "<pre>" . $x[2] . ":" . $x[4] ."\n";
     foreach($banner as $line){
         if(!ereg('[<]',$line) && ereg('[:]',$line)) {
