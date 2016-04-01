@@ -1,0 +1,25 @@
+#!/bin/bash
+apt_conf=/etc/apt/apt.conf.d/70debconf
+proxy=$(echo $all_proxy|perl -p -e "s/socks/http/")
+
+if [ -z "$(grep http $apt_conf)" ]; then
+    test -z "$proxy" && echo "You'll have to run: mate-network-properties to set the system wide proxy first" && exit 1;
+    pass=$1
+    if [ -z $pass ]; then
+	echo -n "Your proxy's password please:"
+	read -es pass
+    fi
+
+    test -z "$(grep http $apt_conf)" && echo "Acquire::http::Proxy \"http://$USER:$pass@$proxy\";" | sudo tee -a /etc/apt/apt.conf.d/70debconf
+    test -z "$(grep https $apt_conf)" && echo "Acquire::https::Proxy \"https://$USER:$pass@$proxy\";" | sudo tee -a /etc/apt/apt.conf.d/70debconf
+    test -z "$(grep ftp $apt_conf)" && echo "Acquire::ftp::Proxy \"ftp://$USER:$pass@$proxy\";" | sudo tee -a /etc/apt/apt.conf.d/70debconf
+    exit 0;
+else
+    echo "your proxy settings for apt are:"
+    grep http $apt_conf
+    grep ftp $apt_conf
+    echo "If it's not working your windows (p)assword may have expired!"
+fi
+
+
+

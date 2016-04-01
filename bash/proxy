@@ -1,0 +1,19 @@
+#!/bin/bash
+# This script changes the proxy settings in apt, based on two different files
+
+ROOT_UID="0"
+if [ "$UID" -eq "$ROOT_UID" ] ; then
+    if [ -L /etc/apt/apt.conf.d/70debconf ];then
+	current=$(ls -l /etc/apt/apt.conf.d/70debconf | grep noproxy )
+	rm /etc/apt/apt.conf.d/70debconf
+	if [ -z $current ];then
+	    ln -s /etc/apt/apt.conf.d/.70debconf.noproxy /etc/apt/apt.conf.d/70debconf
+	else
+	    ln -s /etc/apt/apt.conf.d/.70debconf.proxy /etc/apt/apt.conf.d/70debconf
+	fi
+	cat /etc/apt/apt.conf.d/70debconf
+    fi
+else
+    echo "Only root may set aptitude proxy";
+    exit 1
+fi

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+config=/etc/cntlm.conf
+domain=md-man.biz
+
+if zenity --entry \
+    --title="cntlm windows proxy sonnection setup" \
+    --text="Enter your windows username:" \
+    --entry-text "$USER" 
+then user=$?
+else exit 1
+fi
+
+if zenity --entry \
+    --title="cntlm windows proxy sonnection setup" \
+    --text="Enter your windows password:" \
+    --entry-text "" \
+    --hide-text
+then pass=$?
+else exit 1
+fi
+
+if [ -n "$user" ]; then
+    if [ -n "$pass" ]; then
+
+	sudo service cntlm stop
+	sudo perl -p -i -e "s|(Username\t).*$|Username\t$user|g" $config;
+	sudo perl -p -i -e "s|(Password\t).*$|Password\t$pass|g" $config;
+	sudo perl -p -i -e "s|(Domain\t).*$|Domain\t\t$domain|g" $config;
+	sudo perl -p -i -e "s/10.0.0.41:8080/gateway.mandt.zscaler.net:9400/g" $config;
+	sudo perl -p -i -e "s/Proxy.*10[.]0[.]0[.]42:8080//g" $config;
+	sudo chmod 0600 $config;
+	sudo service cntlm start
+	exit 0;
+    else
+	echo "No Password exiting" 
+    fi
+else
+    echo "No Password exiting" exit 1
+fi
+
+exit 1

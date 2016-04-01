@@ -1,0 +1,27 @@
+#!/bin/bash
+
+test -z "$all_proxy" && echo "You'll have to run: mate-network-properties to set the system wide proxy first" && exit 1;
+proxy=$(echo $all_proxy | perl -p -e "s/socks/http/")
+
+# setup firefox proxy!
+proxyfoxy
+
+pass=$1
+if [ -z $pass ]; then
+    echo -n "windows password:"
+    read -es pass
+fi
+
+# set apt proxy configuration if it's not all ready there
+set_apt_passwd "$pass"
+
+# change proxy settings in both bashrc and apr.conf.d.70debconf
+perl -p -i -e "s|(//.+:).+(@)|\1$pass\2|g" ~/.bashrc # Fix the password setting the .bashrc if present!
+sudo perl -p -i -e "s|(//.+:).+(@)|\1$pass\2|g" /etc/apt/apt.conf.d/70debconf #fix the password setting in /etc/apt/apt.conf.d/70debconf
+
+# Remount all windows drives with the new password and set the firefor proxy!
+map_network_drives.sh "$pass"
+
+echo "\nRemember to source the changed .bashrc file for the changes to take effect, and change your passwd in skype if you got such!"
+
+exit 0;
