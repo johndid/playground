@@ -41,4 +41,5 @@ Thumbs.db
 .gitignore
 
 # emacs ~ files #
-*.*~
+#################
+*~
