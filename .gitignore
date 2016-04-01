@@ -39,3 +39,6 @@ Thumbs.db
 # gitfiles #
 ############
 .gitignore
+
+# emacs ~ files #
+*.*~
