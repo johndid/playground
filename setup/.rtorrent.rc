@@ -1,0 +1,12 @@
+#configuration https://wiki.archlinux.org/index.php/RTorrent#Create_and_manage_files
+port_range = 26000-26999
+directory = ~/Downloads/
+session = ~/Downloads/rtorrent_session/
+schedule = watch_directory,5,5,load_start=~/Downloads/*.torrent
+#encryption = allow_incoming,try_outgoing,enable_retry
+encryption = require,require_RC4,allow_incoming,try_outgoing
+dht = auto
+dht_port = 6881
+peer_exchange = yes
+max_uploads = 8
+check_hash = yes
