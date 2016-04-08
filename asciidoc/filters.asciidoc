@@ -1,0 +1,37 @@
+= Asciidoc filters exmple
+:author: John Dideriksen
+:toc:
+
+== testing various filters on the MacPort edition
+The following document is used to test some of the asciidoc plugins for drawing, all examples have been taken from the authors plugin documentation page.
+
+=== Ditaa
+
+["ditaa"]
+---------------------------------------------------------------------
+    +--------+   +-------+    +-------+
+    |        | --+ ditaa +--> |       |
+    |  Text  |   +-------+    |diagram|
+    |Document|   |!magic!|    |       |
+    |     {d}|   |       |    |       |
+    +---+----+   +-------+    +-------+
+        :                         ^
+        |       Lots of work      |
+        +-------------------------+
+---------------------------------------------------------------------
+
+// ["nwdiag",target="bes2nw.png"]
+// ----
+// diagram {
+//   network local {
+//       address = "1-255"
+
+//       Windows [address = "1,201"];
+//       OSX [address = "202,203"];
+//       SoHard [address = "?"];
+//   }
+// }
+// ----
+
+stops here
+

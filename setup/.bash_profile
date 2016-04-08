@@ -33,6 +33,8 @@ alias connected="lsof -i | grep CONNECTED"
 alias update="sudo softwareupdate -i -a"
 alias lswifi="airport -s"
 alias shred="gshred"
+alias emacs='open -a /Applications/Emacs.app $1'
+alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 
 # install tree unix command using port, it accepts directory arguments
 #alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"

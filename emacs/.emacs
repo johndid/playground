@@ -1,3 +1,13 @@
+;; start the emacsserver that listens to emacsclient
+;; check the setup in the .bash_profile 
+(server-start)
+
+;; Recent files menu item
+(require 'recentf)
+    (recentf-mode 1)
+    (setq recentf-max-menu-items 25)
+    (global-set-key "\C-x\ r" 'recentf-open-files)
+
 ;; remove the splash and start messages
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
@@ -17,7 +27,7 @@
       mac-command-modifier 'meta
       x-select-enable-clipboard t)
 
-;; add marmalade package directory
+;; add marmelade package directory
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list
@@ -25,3 +35,8 @@
    '("melpa" . "http://melpa.org/packages/")
    t)
   (package-initialize))
+
+;; setup file associations
+(setq auto-mode-alist (cons '("README" . text-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.asciidoc$" . adoc-mode) auto-mode-alist))
+

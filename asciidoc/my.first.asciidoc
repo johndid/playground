@@ -1,0 +1,29 @@
+= My first Asciidoc
+:author:
+:toc:
+
+== Introduction
+When you're ready to release or upload. Generate an neat looking document using the command:
+
+.Generating an asciidoc
+
+[source,sh]
+----
+asciidoc myfirstasciidoc.txt;
+----
+
+.Listing asciidoc's present in the current directory
+[source,sh]
+----
+sys::[ls *.asciidoc]
+----
+
+Adding the next document after this line
+
+:leveloffset: 1
+
+include::filters.asciidoc[depth=1]
+
+:leveloffset: 0
+
+And were back in the original document.
