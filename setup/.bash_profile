@@ -10,7 +10,7 @@ export LC_ALL="en_GB.UTF-8"
 
 # The following sets up a local user bin/ directory, that points to the github playground database
 # Then it includes the airport utility, needed for the wifi alias below
-[ ! -L bin ] && ln -s /Users/$USER/Documents/src/playground/bash bin/
+[ ! -L /Users/$USER/bin ] && ln -s /Users/$USER/Documents/src/playground/bash bin/
 [ ! -L /Users/$USER/bin/airport ] && ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /Users/$USER/bin/airport
 
 # Setup paths
