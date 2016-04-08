@@ -19,7 +19,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <plist version=\"1.0\">
 <dict>
     <key>CFBundleExecutable</key>
-    <string>$APPNAME</string>
+    <string>$DIR/$APPNAME</string>
     <key>CFBundleGetInfoString</key>
     <string>$APPNAME</string>
     <key>CFBundleIconFile</key>
